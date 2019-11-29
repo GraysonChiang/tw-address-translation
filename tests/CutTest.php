@@ -5,6 +5,140 @@ use PHPUnit\Framework\TestCase;
 
 class CutTest extends TestCase
 {
+
+    /**
+     * @dataProvider addressCityProvider
+     * @param string $fullAddress
+     */
+    public function testMmcut(string $fullAddress)
+    {
+        $cut = new Cut();
+
+        $cut->mmsCut($fullAddress);
+
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @dataProvider roadsAddressProvider
+     * @param string $fullAddress
+     * @param string $exceptRoad
+     */
+    public function testCutRoad(string $fullAddress, string $exceptRoad)
+    {
+        $cut = new Cut();
+
+        list($road, $address) = $cut->cutRoad($fullAddress);
+
+        $this->assertEquals(
+            mb_strlen($fullAddress),
+            mb_strlen($address) + mb_strlen($road)
+        );
+
+        $this->assertEquals($exceptRoad, $road);
+    }
+
+    public function roadsAddressProvider()
+    {
+        return [
+            ['忠孝東路五段55號5樓5室', '忠孝東路五段'],
+            ['翠嶺路5之88號', '翠嶺路'],
+            ['莊敬路5號34樓', '莊敬路'],
+            ['大勇街55之5號', '大勇街'],
+            ['寶元路二段23巷11號55樓', '寶元路二段'],
+        ];
+    }
+
+    /**
+     * @dataProvider addressCityProvider
+     * @param string $fullAddress
+     * @param string $expectCity
+     */
+    public function testCutCity(string $fullAddress, string $expectCity)
+    {
+        $cut = new Cut();
+
+        list($city, $address) = $cut->cutCity($fullAddress);
+
+        $this->assertEquals(
+            mb_strlen($fullAddress),
+            mb_strlen($address) + mb_strlen($city)
+        );
+
+        $this->assertEquals($expectCity, $city);
+    }
+
+    /**
+     * @dataProvider addressCountryProvider
+     * @param string $fullAddress
+     * @param string $expectCity
+     */
+    public function testCutCountry(string $fullAddress, string $expectCity)
+    {
+        $cut = new Cut();
+
+        list($country, $address) = $cut->cutCityArea($fullAddress);
+
+        $this->assertTrue($country == $expectCity);
+
+        $this->assertEquals(
+            mb_strlen($fullAddress),
+            mb_strlen($address) + mb_strlen($country)
+        );
+
+        $this->assertEquals($expectCity, $country);
+    }
+
+    public function addressCityProvider()
+    {
+        return [
+            ['臺北市信義區忠孝東路五段55號5樓5室', '臺北市'],
+            ['台北市北投區翠嶺路5之88號', '台北市'],
+            ['新北市板橋區莊敬路5號34樓', '新北市'],
+            ['台北市萬華區中華路二段000之6號6樓之9', '台北市'],
+            ['台南市南區國民路16巷11弄11號', '台南市'],
+        ];
+    }
+
+
+    public function addressCountryProvider()
+    {
+        return [
+            ['臺北市信義區忠孝東路五段55號5樓5室', '臺北市信義區'],
+            ['台北市北投區翠嶺路5之88號', '台北市北投區'],
+            ['台南市南區國民路16巷11弄11號', '台南市南區'],
+            ['高雄市左營區光興街55號55樓之55', '高雄市左營區'],
+            ['新北市板橋區莊敬路5號34樓', '新北市板橋區'],
+            ['台北市中山區明水路46號14樓', '台北市中山區'],
+        ];
+    }
+
+    /**
+     * @dataProvider parserDataProvider
+     * @param string $address
+     * @param int $count
+     */
+    public function testParser(string $address, int $count)
+    {
+        $cut = new Cut();
+
+        $parser = $cut->Parser($address);
+
+        $parserCount = array_filter($parser, function ($value) {
+            return !empty($value);
+        });
+
+        $this->assertEquals($count, count($parserCount));
+    }
+
+    public function parserDataProvider()
+    {
+        return [
+            ['台北市信義區忠孝東路五段11號4樓5室', '3'],
+            ['台北市信義區忠孝東路二段號31弄1樓之1', '2'],
+        ];
+    }
+
     /**
      * @dataProvider getMaximumMatchSegment
      * @param string $addresses
@@ -17,7 +151,22 @@ class CutTest extends TestCase
 
         list($str1, $str2) = $cut->maximumMatchSegment($addresses, $len, $city);
 
-        $this->assertTrue(mb_strlen($addresses) == mb_strlen($str1) + mb_strlen($str2));
+        $this->assertEquals(
+            mb_strlen($addresses),
+            mb_strlen($str1) + mb_strlen($str2)
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getMaximumMatchSegment(): array
+    {
+        return [
+            ['台北市信義區忠孝東路五段', '7', ['台北市信義區']],
+            ['臺北市信義區忠孝東路五段', '7', ['臺北市']],
+            ['忠孝東路五段55號333樓', '14', ['忠孝東路五段']]
+        ];
     }
 
     /**
@@ -31,7 +180,7 @@ class CutTest extends TestCase
 
         $normalizeAddress = $cut->normalizeAddress($address);
 
-        $this->assertTrue($normalizeAddress == $target);
+        $this->assertEquals($target, $normalizeAddress);
     }
 
     /**
@@ -46,16 +195,4 @@ class CutTest extends TestCase
             ['臺北信義區忠孝東路一段111號5樓之1', '臺北信義區忠孝東路1段111號5F-1']
         ];
     }
-
-    /**
-     * @return array
-     */
-    public function getMaximumMatchSegment(): array
-    {
-        return [
-            ['台北市信義區忠孝東路五段', '7', ['台北市']],
-            ['臺北信義區忠孝東路五段', '7', ['台北市']]
-        ];
-    }
-
 }

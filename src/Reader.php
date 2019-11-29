@@ -2,24 +2,84 @@
 
 namespace App;
 
+use function foo\func;
+
 /**
  * Class Reader
  * @package App
  */
 class Reader
 {
-    const COUNTY = 'county10603.csv';
+    const CITY_AREA = 'county10603.csv';
 
     const VILLAGE = 'village10602.csv';
 
     const ROAD = 'road10603.csv';
 
+    /* @var array */
+    protected $cityArea = [];
+
+    /* @var array */
+    protected $village = [];
+
+    /* @var array */
+    protected $roads = [];
+
     /**
      * @return array
      */
-    public function getCounties(): array
+    public function getCityArea(): array
     {
-        return $this->openFile(self::COUNTY);
+        if (!empty($this->cityArea)) {
+            return $this->cityArea;
+        }
+
+        $this->cityArea = $this->openFile(self::CITY_AREA);
+
+        return $this->cityArea;
+    }
+
+    /**
+     * @param string $cityName
+     * @return string
+     */
+    public function cityToEng(string $cityName): string
+    {
+        $cities = $this->getCities();
+
+        return $cities[$cityName] ?? '';
+    }
+
+    /**
+     * @param string $cityName
+     * @return string
+     */
+    public function getPostCode(string $cityName): string
+    {
+        $counties = $this->getCityArea();
+
+        $newCountry = array_combine(
+            array_column($counties, 1),
+            array_column($counties, 0)
+        );
+
+        return $newCountry[$cityName] ?? '';
+    }
+
+    /**
+     * @param string $cityArea
+     * @return string
+     */
+    public function cityAreaToEng(string $cityArea): string
+    {
+        $counties = $this->getCityArea();
+
+        $newCountry = array_combine(
+            array_column($counties, 1),
+            array_column($counties, 2)
+        );
+
+        return $newCountry[$cityArea] ?? '';
     }
 
     /**
@@ -27,12 +87,29 @@ class Reader
      */
     public function getVillage(): array
     {
-        return $this->openFile(self::VILLAGE);
+        if (!empty($this->village)) {
+            return $this->village;
+        }
+
+        $this->village = $this->openFile(self::VILLAGE);
+
+        return $this->village;
     }
 
     public function getRodes(): array
     {
-        return $this->openFile(self::ROAD);
+        if (!empty($this->roads)) {
+            return $this->roads;
+        }
+
+        $roads = $this->openFile(self::ROAD);
+
+        $this->roads = array_combine(
+            array_column($roads, 0),
+            array_column($roads, 1)
+        );
+
+        return $this->roads;
     }
 
     /**
@@ -55,7 +132,7 @@ class Reader
      */
     public function checkFile()
     {
-        if (!file_exists('../src/Dataset/' . self::COUNTY)) {
+        if (!file_exists('../src/Dataset/' . self::CITY_AREA)) {
             return false;
         }
         if (!file_exists('../src/Dataset/' . self::VILLAGE)) {
@@ -74,8 +151,11 @@ class Reader
     {
         return [
             '臺北市' => 'Taipei City',
+            '台北市' => 'Taipei City',
             '基隆市' => 'Keelung City',
             '新北市' => 'New Taipei City',
+            '台北縣' => 'New Taipei City',
+            '臺北縣' => 'New Taipei City',
             '連江縣' => 'Lienchiang County',
             '宜蘭縣' => 'Yilan County',
             '釣魚台' => 'Diaoyutai',
@@ -84,17 +164,21 @@ class Reader
             '桃園市' => 'Taoyuan City',
             '苗栗縣' => 'Miaoli County',
             '臺中市' => 'Taichung City',
+            '台中市' => 'Taichung City',
             '彰化縣' => 'Changhua City',
             '南投縣' => 'Nantou County',
             '嘉義市' => 'Chiayi City',
             '嘉義縣' => 'Chiayi County',
             '雲林縣' => 'Yunlin County',
             '臺南市' => 'Tainan City',
+            '台南市' => 'Tainan City',
             '高雄市' => 'Kaohsiung City',
             '澎湖縣' => 'Penghu County',
+            '澎湖' => 'Penghu County',
             '金門縣' => 'Kinmen County',
             '屏東縣' => 'Pingtung County',
             '臺東縣' => 'Taitung County',
+            '台東縣' => 'Taitung County',
             '花蓮縣' => 'Hualien County'
         ];
     }
