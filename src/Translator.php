@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace Grayson\TaiwanAddress;
 
 /**
  * Class Translator
- * @package App
+ * @package Grayson\TaiwanAddress
  */
 class Translator
 {

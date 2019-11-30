@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace Grayson\TaiwanAddress;
 
 /**
  * Class Reader
- * @package App
+ * @package Grayson\TaiwanAddress
  */
 class Reader
 {

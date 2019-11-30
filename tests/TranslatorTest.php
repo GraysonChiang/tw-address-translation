@@ -1,8 +1,11 @@
 <?php
 
-use App\Translator;
+use Grayson\TaiwanAddress\Translator;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class TranslatorTest
+ */
 class TranslatorTest extends TestCase
 {
     /**
@@ -73,6 +76,4 @@ class TranslatorTest extends TestCase
             ['新北市新店區寶元路二段166巷195號55樓'],
         ];
     }
-
-
 }

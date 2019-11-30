@@ -1,6 +1,6 @@
 <?php
 
-use App\Reader;
+use Grayson\TaiwanAddress\Reader;
 use PHPUnit\Framework\TestCase;
 
 /**

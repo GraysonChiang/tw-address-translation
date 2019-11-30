@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Translator;
+use Grayson\TaiwanAddress\Translator;
 
 $translator = new Translator();
 

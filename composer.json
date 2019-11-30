@@ -2,6 +2,7 @@
     "name": "graysonchiang/tw-address",
     "description": "Taiwan Address to English version",
     "license": "MIT",
+    "keywords": ["taiwan", "address", "convert", "post", "taipei" ],
     "authors": [
         {
             "name": "Grayson",
@@ -13,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Grayson\\TaiwanAddress\\": "src/"
         }
     },
   "require": {

@@ -1,7 +1,11 @@
 <?php
 
-namespace App;
+namespace Grayson\TaiwanAddress;
 
+/**
+ * Class Cut
+ * @package Grayson\TaiwanAddress
+ */
 class Cut
 {
     const MAX_ROAD_LENGTH = '14';

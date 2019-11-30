@@ -1,8 +1,11 @@
 <?php
 
-use App\Cut;
+use Grayson\TaiwanAddress\Cut;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class CutTest
+ */
 class CutTest extends TestCase
 {
     /**
