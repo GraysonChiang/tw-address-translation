@@ -1,6 +1,6 @@
 {
     "name": "graysonchiang/tw-address",
-    "description": "Address to english version",
+    "description": "Taiwan Address to English version",
     "license": "MIT",
     "authors": [
         {
@@ -9,8 +9,7 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^7.1",
-        "mockery/mockery": "^1.1"
+        "phpunit/phpunit": "^7.1"
     },
     "autoload": {
         "psr-4": {
