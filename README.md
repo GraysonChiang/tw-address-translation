@@ -1,5 +1,7 @@
 ## 台灣地址英譯 Taiwan Address Convert To English
 
+[![Build Status](https://travis-ci.com/GraysonChiang/tw-address.svg?branch=master)](https://travis-ci.com/GraysonChiang/tw-address)
+
 ### Installation
 
 ```sh

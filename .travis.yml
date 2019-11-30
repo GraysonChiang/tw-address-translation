@@ -11,7 +11,7 @@ install:
   - composer install
 
 script:
-  - ./vendor/bin/phpunit --coverage-text --report-useless-tests
+  - ./vendor/bin/phpunit
 
 matrix:
   fast_finish: true
