@@ -1,6 +1,7 @@
 ## 台灣地址英譯 Taiwan Address Convert To English
 
-[![Build Status](https://travis-ci.com/GraysonChiang/tw-address.svg?branch=master)](https://travis-ci.com/GraysonChiang/tw-address)
+[![Build Status](https://travis-ci.com/GraysonChiang/tw-address.svg?branch=master)](https://travis-ci.com/GraysonChiang/tw-address)[![Packagist](https://img.shields.io/packagist/v/graysonchiang/tw-address.svg?style=flat-square)](https://packagist.org/packages/graysonchiang/tw-address) [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
 
 ### Installation
 
