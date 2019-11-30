@@ -168,29 +168,12 @@ class Reader
     public function openFile(string $fileName): array
     {
         $newArray = [];
-        $file = fopen('../src/Dataset/' . $fileName, 'r');
+        $file = fopen(dirname(__DIR__) . '/src/Dataset/' . $fileName, 'r');
         while (!feof($file)) {
             $newArray[] = fgetcsv($file);
         }
         fclose($file);
         return $newArray;
-    }
-
-    /**
-     * @return bool
-     */
-    public function checkFile()
-    {
-        if (!file_exists('../src/Dataset/' . self::CITY_AREA)) {
-            return false;
-        }
-        if (!file_exists('../src/Dataset/' . self::VILLAGE)) {
-            return false;
-        }
-        if (!file_exists('../src/Dataset/' . self::ROAD)) {
-            return false;
-        }
-        return true;
     }
 
     /**

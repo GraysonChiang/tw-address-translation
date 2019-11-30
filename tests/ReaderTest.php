@@ -112,9 +112,11 @@ class ReaderTest extends TestCase
 
     public function testCheckFile()
     {
-        $reader = new Reader();
+        $this->assertFileExists(dirname(__DIR__) . '/src/Dataset/' . Reader::CITY_AREA);
 
-        $this->assertTrue($reader->checkFile());
+        $this->assertFileExists(dirname(__DIR__) . '/src/Dataset/' . Reader::VILLAGE);
+
+        $this->assertFileExists(dirname(__DIR__) . '/src/Dataset/' . Reader::ROAD);
     }
 
     public function testGetCounties()
