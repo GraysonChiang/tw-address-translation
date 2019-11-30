@@ -2,8 +2,6 @@
 
 namespace App;
 
-use function foo\func;
-
 /**
  * Class Reader
  * @package App
@@ -67,6 +65,17 @@ class Reader
     }
 
     /**
+     * @param string $road
+     * @return string
+     */
+    public function roadToEng(string $road): string
+    {
+        $roads = $this->getRodes();
+
+        return $roads[$road] ?? '';
+    }
+
+    /**
      * @param string $cityArea
      * @return string
      */
@@ -85,17 +94,49 @@ class Reader
     /**
      * @return array
      */
-    public function getVillage(): array
+    public function getVillages(): array
     {
         if (!empty($this->village)) {
             return $this->village;
         }
 
-        $this->village = $this->openFile(self::VILLAGE);
+        $village = $this->openFile(self::VILLAGE);
+
+        $this->village = array_combine(
+            array_column($village, 0),
+            array_column($village, 1)
+        );
 
         return $this->village;
     }
 
+    /**
+     * @return array
+     */
+    public function getRoadsInChinese(): array
+    {
+        return array_keys($this->getRodes());
+    }
+
+    /**
+     * @return array
+     */
+    public function getVillagesInChinese(): array
+    {
+        return array_keys($this->getVillages());
+    }
+
+    /**
+     * @return array
+     */
+    public function getCitiesInChinese(): array
+    {
+        return array_keys($this->getCities());
+    }
+
+    /**
+     * @return array
+     */
     public function getRodes(): array
     {
         if (!empty($this->roads)) {
@@ -110,6 +151,14 @@ class Reader
         );
 
         return $this->roads;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCityAreaInChinese(): array
+    {
+        return array_column($this->getCityArea(), 1);
     }
 
     /**

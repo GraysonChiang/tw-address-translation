@@ -5,18 +5,61 @@ use PHPUnit\Framework\TestCase;
 
 class CutTest extends TestCase
 {
-
     /**
      * @dataProvider addressCityProvider
      * @param string $fullAddress
      */
-    public function testMmcut(string $fullAddress)
+    public function testCutAll(string $fullAddress)
     {
         $cut = new Cut();
 
-        $cut->mmsCut($fullAddress);
+        $address = $cut->cutAll($fullAddress);
 
-        $this->assertTrue(true);
+        $this->assertIsArray($address);
+    }
+
+    /**
+     * @return array
+     */
+    public function addressCityProvider(): array
+    {
+        return [
+            ['臺北市信義區忠孝東路五段55號5樓5室', '臺北市'],
+            ['台北市北投區翠嶺路5之88號', '台北市'],
+            ['新北市板橋區莊敬路5號34樓', '新北市'],
+            ['台北市萬華區中華路二段000之6號6樓之9', '台北市'],
+            ['台南市南區國民路16巷11弄11號', '台南市'],
+        ];
+    }
+
+    /**
+     * @dataProvider villageProvider
+     * @param string $fullAddress
+     * @param string $exceptVillage
+     */
+    public function testVillage(string $fullAddress, string $exceptVillage)
+    {
+        $cut = new Cut();
+
+        list($village, $address) = $cut->cutVillage($fullAddress);
+
+        $this->assertEquals(
+            mb_strlen($fullAddress),
+            mb_strlen($address) + mb_strlen($village)
+        );
+
+        $this->assertEquals($exceptVillage, $village);
+    }
+
+    /**
+     * @return array
+     */
+    public function villageProvider(): array
+    {
+        return [
+            ['國光里民德路25巷5弄1號3樓', '國光里'],
+            ['昇平里1鄰昇平街24號', '昇平里'],
+        ];
     }
 
     /**
@@ -38,6 +81,9 @@ class CutTest extends TestCase
         $this->assertEquals($exceptRoad, $road);
     }
 
+    /**
+     * @return array
+     */
     public function roadsAddressProvider()
     {
         return [
@@ -89,19 +135,10 @@ class CutTest extends TestCase
         $this->assertEquals($expectCity, $country);
     }
 
-    public function addressCityProvider()
-    {
-        return [
-            ['臺北市信義區忠孝東路五段55號5樓5室', '臺北市'],
-            ['台北市北投區翠嶺路5之88號', '台北市'],
-            ['新北市板橋區莊敬路5號34樓', '新北市'],
-            ['台北市萬華區中華路二段000之6號6樓之9', '台北市'],
-            ['台南市南區國民路16巷11弄11號', '台南市'],
-        ];
-    }
-
-
-    public function addressCountryProvider()
+    /**
+     * @return array
+     */
+    public function addressCountryProvider(): array
     {
         return [
             ['臺北市信義區忠孝東路五段55號5樓5室', '臺北市信義區'],
@@ -122,7 +159,7 @@ class CutTest extends TestCase
     {
         $cut = new Cut();
 
-        $parser = $cut->Parser($address);
+        $parser = $cut->parser($address);
 
         $parserCount = array_filter($parser, function ($value) {
             return !empty($value);
@@ -134,8 +171,9 @@ class CutTest extends TestCase
     public function parserDataProvider()
     {
         return [
-            ['台北市信義區忠孝東路五段11號4樓5室', '3'],
-            ['台北市信義區忠孝東路二段號31弄1樓之1', '2'],
+            ['55巷11號4樓5室', '4'],
+            ['55巷11號4樓之155', '3'],
+            ['444號31弄1樓之1', '3'],
         ];
     }
 

@@ -105,7 +105,7 @@ class ReaderTest extends TestCase
     {
         $reader = new  Reader();
 
-        $openFile = $reader->openFile('road10603 . csv');
+        $openFile = $reader->openFile('road10603.csv');
 
         $this->assertIsArray($openFile);
     }
@@ -128,7 +128,7 @@ class ReaderTest extends TestCase
     {
         $reader = new Reader();
 
-        $this->assertIsArray($reader->getVillage());
+        $this->assertIsArray($reader->getVillages());
     }
 
     public function testGetRodes()
