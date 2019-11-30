@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 class Cut
 {
     const MAX_ROAD_LENGTH = '14';
@@ -10,6 +9,9 @@ class Cut
     const MAX_VILLAGE_LENGTH = '7';
 
     const MAX_CITY_LENGTH = '7';
+
+    /* @var Reader */
+    protected $reader;
 
     /**
      * @param string $address
@@ -187,9 +189,17 @@ class Cut
     /**
      * @return Reader
      */
-    private function getReader()
+    private function getReader(): Reader
     {
-        return new Reader();
+
+        if ($this->reader) {
+            return $this->reader;
+        }
+
+        $this->reader = new Reader();
+
+
+        return $this->reader;
     }
 
     /**

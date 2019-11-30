@@ -2,9 +2,12 @@
 
 namespace App;
 
+/**
+ * Class Translator
+ * @package App
+ */
 class Translator
 {
-
     /**
      * @param array $result
      * @return string
