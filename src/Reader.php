@@ -3,8 +3,7 @@
 namespace Grayson\TaiwanAddress;
 
 /**
- * Class Reader
- * @package Grayson\TaiwanAddress
+ * Class Reader.
  */
 class Reader
 {
@@ -39,6 +38,7 @@ class Reader
 
     /**
      * @param string $cityName
+     *
      * @return string
      */
     public function cityToEng(string $cityName): string
@@ -50,6 +50,7 @@ class Reader
 
     /**
      * @param string $cityName
+     *
      * @return string
      */
     public function getPostCode(string $cityName): string
@@ -66,6 +67,7 @@ class Reader
 
     /**
      * @param string $road
+     *
      * @return string
      */
     public function roadToEng(string $road): string
@@ -77,6 +79,7 @@ class Reader
 
     /**
      * @param string $cityArea
+     *
      * @return string
      */
     public function cityAreaToEng(string $cityArea): string
@@ -163,16 +166,18 @@ class Reader
 
     /**
      * @param string $fileName
+     *
      * @return array
      */
     public function openFile(string $fileName): array
     {
         $newArray = [];
-        $file = fopen(dirname(__DIR__) . '/src/Dataset/' . $fileName, 'r');
+        $file = fopen(dirname(__DIR__).'/src/Dataset/'.$fileName, 'r');
         while (!feof($file)) {
             $newArray[] = fgetcsv($file);
         }
         fclose($file);
+
         return $newArray;
     }
 
@@ -206,12 +211,12 @@ class Reader
             '台南市' => 'Tainan City',
             '高雄市' => 'Kaohsiung City',
             '澎湖縣' => 'Penghu County',
-            '澎湖' => 'Penghu County',
+            '澎湖'  => 'Penghu County',
             '金門縣' => 'Kinmen County',
             '屏東縣' => 'Pingtung County',
             '臺東縣' => 'Taitung County',
             '台東縣' => 'Taitung County',
-            '花蓮縣' => 'Hualien County'
+            '花蓮縣' => 'Hualien County',
         ];
     }
 }

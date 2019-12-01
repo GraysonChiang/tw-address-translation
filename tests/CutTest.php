@@ -4,12 +4,13 @@ use Grayson\TaiwanAddress\Cut;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class CutTest
+ * Class CutTest.
  */
 class CutTest extends TestCase
 {
     /**
      * @dataProvider addressCityProvider
+     *
      * @param string $fullAddress
      */
     public function testCutAll(string $fullAddress)
@@ -37,6 +38,7 @@ class CutTest extends TestCase
 
     /**
      * @dataProvider villageProvider
+     *
      * @param string $fullAddress
      * @param string $exceptVillage
      */
@@ -67,6 +69,7 @@ class CutTest extends TestCase
 
     /**
      * @dataProvider roadsAddressProvider
+     *
      * @param string $fullAddress
      * @param string $exceptRoad
      */
@@ -100,6 +103,7 @@ class CutTest extends TestCase
 
     /**
      * @dataProvider addressCityProvider
+     *
      * @param string $fullAddress
      * @param string $expectCity
      */
@@ -119,6 +123,7 @@ class CutTest extends TestCase
 
     /**
      * @dataProvider addressCountryProvider
+     *
      * @param string $fullAddress
      * @param string $expectCity
      */
@@ -155,8 +160,9 @@ class CutTest extends TestCase
 
     /**
      * @dataProvider parserDataProvider
+     *
      * @param string $address
-     * @param int $count
+     * @param int    $count
      */
     public function testParser(string $address, int $count)
     {
@@ -182,8 +188,9 @@ class CutTest extends TestCase
 
     /**
      * @dataProvider getMaximumMatchSegment
+     *
      * @param string $addresses
-     * @param array $city
+     * @param array  $city
      * @param $len
      */
     public function testMaximumMatchSegment(string $addresses, int $len, array $city)
@@ -206,12 +213,13 @@ class CutTest extends TestCase
         return [
             ['台北市信義區忠孝東路五段', '7', ['台北市信義區']],
             ['臺北市信義區忠孝東路五段', '7', ['臺北市']],
-            ['忠孝東路五段55號333樓', '14', ['忠孝東路五段']]
+            ['忠孝東路五段55號333樓', '14', ['忠孝東路五段']],
         ];
     }
 
     /**
      * @dataProvider getNormalizeAddress
+     *
      * @param string $address
      * @param string $target
      */
@@ -233,7 +241,7 @@ class CutTest extends TestCase
             ['台北市信義區忠孝東路五段', '台北市信義區忠孝東路5段'],
             ['臺北信義區忠孝東路一段', '臺北信義區忠孝東路1段'],
             ['臺北信義區忠孝東路一段111號5樓', '臺北信義區忠孝東路1段111號5F'],
-            ['臺北信義區忠孝東路一段111號5樓之1', '臺北信義區忠孝東路1段111號5F-1']
+            ['臺北信義區忠孝東路一段111號5樓之1', '臺北信義區忠孝東路1段111號5F-1'],
         ];
     }
 }

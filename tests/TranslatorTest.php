@@ -4,12 +4,13 @@ use Grayson\TaiwanAddress\Translator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class TranslatorTest
+ * Class TranslatorTest.
  */
 class TranslatorTest extends TestCase
 {
     /**
      * @dataProvider resultArray
+     *
      * @param array $result
      */
     public function testToEng(array $result)
@@ -34,15 +35,16 @@ class TranslatorTest extends TestCase
                     '號' => '55',
                     '弄' => '555',
                     '樓' => '555',
-                    '室' => ''
-                ]
-            ]
+                    '室' => '',
+                ],
+            ],
             ],
         ];
     }
 
     /**
      * @dataProvider addressCityProvider
+     *
      * @param string $address
      */
     public function testGet(string $address)
@@ -53,7 +55,6 @@ class TranslatorTest extends TestCase
 
         $this->assertTrue(true);
     }
-
 
     /**
      * @return array

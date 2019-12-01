@@ -4,13 +4,13 @@ use Grayson\TaiwanAddress\Reader;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ReaderTest
+ * Class ReaderTest.
  */
 class ReaderTest extends TestCase
 {
-
     /**
      * @dataProvider getCountries
+     *
      * @param string $country
      * @param string $eng
      * @param string $postCode
@@ -26,6 +26,7 @@ class ReaderTest extends TestCase
 
     /**
      * @dataProvider getCountries
+     *
      * @param string $country
      * @param string $eng
      */
@@ -50,6 +51,7 @@ class ReaderTest extends TestCase
 
     /**
      * @dataProvider getCities
+     *
      * @param string $city
      * @param string $eng
      */
@@ -97,7 +99,7 @@ class ReaderTest extends TestCase
             ['屏東縣', 'Pingtung County'],
             ['臺東縣', 'Taitung County'],
             ['台東縣', 'Taitung County'],
-            ['花蓮縣', 'Hualien County']
+            ['花蓮縣', 'Hualien County'],
         ];
     }
 
@@ -112,11 +114,11 @@ class ReaderTest extends TestCase
 
     public function testCheckFile()
     {
-        $this->assertFileExists(dirname(__DIR__) . '/src/Dataset/' . Reader::CITY_AREA);
+        $this->assertFileExists(dirname(__DIR__).'/src/Dataset/'.Reader::CITY_AREA);
 
-        $this->assertFileExists(dirname(__DIR__) . '/src/Dataset/' . Reader::VILLAGE);
+        $this->assertFileExists(dirname(__DIR__).'/src/Dataset/'.Reader::VILLAGE);
 
-        $this->assertFileExists(dirname(__DIR__) . '/src/Dataset/' . Reader::ROAD);
+        $this->assertFileExists(dirname(__DIR__).'/src/Dataset/'.Reader::ROAD);
     }
 
     public function testGetCounties()
