@@ -31,6 +31,7 @@ class Cut
 
         if (!$cityArea) {
             list($cityArea, $address) = $this->cutCity($address);
+            $cityArea = $reader->cityToEng($cityArea);
         }
 
         list($road, $address) = $this->cutRoad($address);

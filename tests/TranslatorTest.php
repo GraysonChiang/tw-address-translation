@@ -61,6 +61,7 @@ class TranslatorTest extends TestCase
     public function addressCityProvider(): array
     {
         return [
+            ['台北市南京東路二段99號'],
             ['新北市板橋區莊敬路59號9樓之44'],
             ['新北市莊敬路59號9樓之44'],
             ['臺北市中華路二段597號6樓之11'],
