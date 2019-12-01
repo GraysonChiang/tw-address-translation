@@ -3,8 +3,7 @@
 namespace Grayson\TaiwanAddress;
 
 /**
- * Class Cut
- * @package Grayson\TaiwanAddress
+ * Class Cut.
  */
 class Cut
 {
@@ -19,6 +18,7 @@ class Cut
 
     /**
      * @param string $address
+     *
      * @return array
      */
     public function cutAll(string $address)
@@ -46,11 +46,12 @@ class Cut
     }
 
     /**
-     * 最大匹配
+     * 最大匹配.
      *
      * @param string $string
-     * @param int $maxlength
-     * @param array $dataset
+     * @param int    $maxlength
+     * @param array  $dataset
+     *
      * @return array
      */
     public function maximumMatchSegment(string $string, int $maxlength, array $dataset)
@@ -68,6 +69,7 @@ class Cut
 
     /**
      * @param string $address
+     *
      * @return array
      */
     public function cutVillage(string $address)
@@ -83,6 +85,7 @@ class Cut
 
     /**
      * @param string $address
+     *
      * @return array
      */
     public function cutRoad(string $address)
@@ -98,6 +101,7 @@ class Cut
 
     /**
      * @param string $address
+     *
      * @return array
      */
     public function cutCity(string $address)
@@ -113,6 +117,7 @@ class Cut
 
     /**
      * @param string $address
+     *
      * @return array
      */
     public function cutCityArea(string $address)
@@ -128,6 +133,7 @@ class Cut
 
     /**
      * @param string $address
+     *
      * @return string
      */
     public function getNumber(string $address): string
@@ -141,6 +147,7 @@ class Cut
 
     /**
      * @param string $address
+     *
      * @return array
      */
     public function parser(string $address): array
@@ -182,6 +189,7 @@ class Cut
 
     /**
      * @param string $string
+     *
      * @return string|string[]
      */
     public function normalizeAddress(string $string)
@@ -198,13 +206,11 @@ class Cut
      */
     private function getReader(): Reader
     {
-
         if ($this->reader) {
             return $this->reader;
         }
 
         $this->reader = new Reader();
-
 
         return $this->reader;
     }
