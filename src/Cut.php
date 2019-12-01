@@ -26,10 +26,12 @@ class Cut
         list($cityArea, $address) = $this->cutCityArea($address);
 
         $reader = $this->getReader();
-
         $code = $reader->getPostCode($cityArea);
-
         $cityArea = $reader->cityAreaToEng($cityArea);
+
+        if (!$cityArea) {
+            $cityArea = $this->cutCity($address);
+        }
 
         list($road, $address) = $this->cutRoad($address);
 
