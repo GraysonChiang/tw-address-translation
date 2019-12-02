@@ -18,7 +18,7 @@ class Translator
 
         $result = [$road, $village, ($cityArea.' '.$code), 'Taiwan'];
 
-        $others = ['巷' => 'Ln. ', '弄' => 'Aly. ', '號' => 'No. ', '樓' => '', '室' => ''];
+        $others = ['巷' => 'Ln. ', '弄' => 'Aly. ', '號' => 'No. ', '樓' => '', '室' => 'Room. '];
 
         foreach ($others as $other => $prefix) {
             if (!isset($address[$other]) || empty($address[$other])) {
@@ -32,6 +32,11 @@ class Translator
         }));
     }
 
+    /**
+     * @param string $address
+     *
+     * @return string
+     */
     public function get(string $address)
     {
         $result = $this->getCut()->cutAll($address);
@@ -39,6 +44,9 @@ class Translator
         return $this->toEnglish($result);
     }
 
+    /**
+     * @return Cut
+     */
     private function getCut()
     {
         return new Cut();
