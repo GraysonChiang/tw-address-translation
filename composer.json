@@ -2,7 +2,7 @@
     "name": "graysonchiang/tw-address",
     "description": "Taiwan Address to English version",
     "license": "MIT",
-    "keywords": ["taiwan", "address", "convert", "post", "taipei" ],
+    "keywords": ["taiwan", "address", "convert", "post", "taipei", "converter", "translator", "tw", "addr"],
     "authors": [
         {
             "name": "Grayson",
