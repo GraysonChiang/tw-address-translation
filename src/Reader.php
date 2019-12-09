@@ -37,6 +37,19 @@ class Reader
     }
 
     /**
+     * @param string $villageName
+     *
+     * @return string
+     */
+    public function villageToEng(string $villageName): string
+    {
+        $villages = $this->getVillages();
+
+        return $villages[$villageName] ?? '';
+    }
+
+
+    /**
      * @param string $cityName
      *
      * @return string

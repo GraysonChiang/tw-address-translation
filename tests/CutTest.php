@@ -18,6 +18,8 @@ class CutTest extends TestCase
         $cut = new Cut();
 
         $address = $cut->cutAll($fullAddress);
+        
+        var_dump($address);
 
         $this->assertIsArray($address);
     }
@@ -28,8 +30,8 @@ class CutTest extends TestCase
     public function addressCityProvider(): array
     {
         return [
-            ['臺北市信義區忠孝東路五段55號5樓5室', '臺北市'],
-            ['台北市北投區翠嶺路5之88號', '台北市'],
+            ['臺北市信義區興雅里忠孝東路五段55號5樓5室', '臺北市'],
+            ['台北市北投區興昌村翠嶺路5之88號', '台北市'],
             ['新北市板橋區莊敬路5號34樓', '新北市'],
             ['台北市萬華區中華路二段000之6號6樓之9', '台北市'],
             ['台南市南區國民路16巷11弄11號', '台南市'],

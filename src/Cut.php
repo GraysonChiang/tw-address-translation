@@ -34,11 +34,13 @@ class Cut
             $cityArea = $reader->cityToEng($cityArea);
         }
 
+        list($village, $address) = $this->cutVillage($address);
+
+        $village = $reader->villageToEng($village);
+
         list($road, $address) = $this->cutRoad($address);
 
         $road = $reader->roadToEng($road);
-
-        list($village, $address) = $this->cutVillage($address);
 
         $address = $this->parser($address);
 
@@ -49,8 +51,8 @@ class Cut
      * 最大匹配.
      *
      * @param string $string
-     * @param int    $maxlength
-     * @param array  $dataset
+     * @param int $maxlength
+     * @param array $dataset
      *
      * @return array
      */
