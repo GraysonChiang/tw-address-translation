@@ -18,7 +18,7 @@ class CutTest extends TestCase
         $cut = new Cut();
 
         $address = $cut->cutAll($fullAddress);
-        
+
         var_dump($address);
 
         $this->assertIsArray($address);

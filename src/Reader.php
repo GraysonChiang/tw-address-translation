@@ -48,7 +48,6 @@ class Reader
         return $villages[$villageName] ?? '';
     }
 
-
     /**
      * @param string $cityName
      *
