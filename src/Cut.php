@@ -51,8 +51,8 @@ class Cut
      * 最大匹配.
      *
      * @param string $string
-     * @param int $maxlength
-     * @param array $dataset
+     * @param int    $maxlength
+     * @param array  $dataset
      *
      * @return array
      */
